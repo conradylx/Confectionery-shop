@@ -1,7 +1,8 @@
 from django.db import models
 from django.conf import settings
-from django.db.models import Model
+from django.db.models import Model, Sum
 from django.urls import reverse
+
 
 CATEGORY_CHOICE = {
     ('K','Kruche'),
@@ -51,6 +52,15 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} of {self.item.title}"
+
+    def get_total_price(self):
+        return self.quantity * self.item.price
+
+    def get_total_disc_price(self):
+        return self.quantity * self.item.disc_price
+
+    def get_amount_save(self):
+        return self.get_total_price() - self.get_total_disc_price()
 
 
 class Order(models.Model):
