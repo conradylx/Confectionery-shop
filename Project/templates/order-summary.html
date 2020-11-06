@@ -22,19 +22,47 @@
             <tbody>
             {% for order_item in object.items.all %}
               <tr>
-                <th scope="row">1</th>
+                <th scope="row">{{ forloop.counter }}</th>
                 <td>{{ order_item.item.title }}</td>
-                <td>{{ order_item.item.price }} zł</td>
-                <td>{{ order_item.quantity }}</td>
-                <td>{% if order_item.item.disc_price %}
-                    {{ order_item.get_total_disc_price }} zł
-                    <span class="badge badge-primary">Rabat {{ order_item.get_amount_save }} zł</span>
+                <td>{{ order_item.item.price|floatformat:2 }} zł</td>
+                <td>
+                    <a href="{% url 'core:remove_item_from_cart' order_item.item.slug %}"><i class="fas fa-minus mr-2"></i></a>
+                    {{ order_item.quantity }}
+                    <a href="{% url 'core:add_item_to_cart' order_item.item.slug %}"><i class="fas fa-plus ml-2"></i></a>
+                </td>
+                <td>{% if order_item.item.disc_price|floatformat:2 %}
+                    {{ order_item.get_total_disc_price|floatformat:2 }} zł
+                    <span class="badge badge-primary">Rabat {{ order_item.get_amount_save|floatformat:2 }} zł</span>
                     {% else %}
-                    {{ order_item.get_total_price }} zł
+                    {{ order_item.get_total_price|floatformat:2 }} zł
                     {% endif %}
+                    <a style='color: red;' href="{% url 'core:remove-from-cart' order_item.item.slug %}">
+                        <i class="fas fa-trash float-right"></i>
+                    </a>
                 </td>
               </tr>
-            {%  endfor %}
+               {% empty %}
+                <tr>
+                  <td colspan="5">Your cart is empty</td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <a class="btn btn-primary float-right ml-02" href="/">Back to site</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% if object.get_total %}
+            <tr>
+                <td colspan="4"><b>Do zapłaty</b></td>
+                <td><b>{{ object.get_total|floatformat:2 }} zł</b></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <a class="btn btn-primary float-right ml-02" href="/">Back to site</a>
+                    <a class="btn btn-light-blue float-right" href="/checkout">Proceed to checkout</a>
+                </td>
+            </tr>
+            {% endif %}
             </tbody>
           </table>
         </div>

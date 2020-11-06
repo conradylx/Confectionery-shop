@@ -62,6 +62,12 @@ class OrderItem(models.Model):
     def get_amount_save(self):
         return self.get_total_price() - self.get_total_disc_price()
 
+    def get_final_price(self):
+        if self.item.disc_price:
+            return self.get_total_disc_price()
+        else:
+            return self.get_total_price()
+
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -72,3 +78,9 @@ class Order(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def get_total(self):
+        total = 0
+        for order in self.items.all():
+            total += order.get_final_price()
+        return total
