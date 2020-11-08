@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.db.models import Model, Sum
 from django.urls import reverse
-
+from django_countries.fields import CountryField
 
 CATEGORY_CHOICE = {
     ('K','Kruche'),
@@ -75,6 +75,7 @@ class Order(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     ordered = models.BooleanField(default=False)
     ordered_date = models.DateTimeField()
+    billing_address = models.ForeignKey('BillingAddress', on_delete=models.SET_NULL,blank=True,null=True)
 
     def __str__(self):
         return self.user.username
@@ -84,3 +85,14 @@ class Order(models.Model):
         for order in self.items.all():
             total += order.get_final_price()
         return total
+
+
+class BillingAddress(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    street_address = models.CharField(max_length=200)
+    apartment_address = models.CharField(max_length=200)
+    country = CountryField(multiple=False)
+    zip = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.user.username
