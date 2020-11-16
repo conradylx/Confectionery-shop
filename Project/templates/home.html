@@ -1,8 +1,8 @@
 {%  extends 'base.html' %}
 {% block content %}
- <!--Carousel Wrapper-->
+{# <!--Carousel Wrapper-->#}
 {#  <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">#}
-
+{##}
 {#    <!--Indicators-->#}
 {#    <ol class="carousel-indicators">#}
 {#      <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>#}
@@ -127,7 +127,7 @@
 {##}
 {#    </div>#}
 {#    <!--/.Slides-->#}
-
+{##}
 {#    <!--Controls-->#}
 {#    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">#}
 {#      <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
@@ -137,7 +137,7 @@
 {#      <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
 {#      <span class="sr-only">Next</span>#}
 {#    </a>#}
-    <!--/.Controls-->
+{#    <!--/.Controls-->#}
 
   </div>
   <!--/.Carousel Wrapper-->
@@ -163,22 +163,26 @@
 
           <!-- Links -->
           <ul class="navbar-nav mr-auto">
+          {% if category_menu %}
+              <li class="nav-item active">
+              <a class="nav-link" href="/">Wszystkie</a>
+{#              <a class="nav-link" href="{% url 'core:categories' %}">{{ item }}</a>#}
+            </li>
+              {% for item in category_menu %}
             <li class="nav-item active">
-              <a class="nav-link" href="#">All
-                <span class="sr-only">(current)</span>
-              </a>
+              <a class="nav-link" href="/?category={{ item.id }}">{{ item.name }}</a>
+{#              <a class="nav-link" href="{% url 'core:categories' %}">{{ item }}</a>#}
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Shirts</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Sport wears</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Outwears</a>
-            </li>
-
+              {% endfor %}
+          {% endif %}
           </ul>
+{#              <ul class="navbar-nav mr-auto">#}
+{#              {% for items in object_list %}#}
+{#            <li class="nav-item active">#}
+{#              <a class="nav-link" href="#">{{ items.category }}</a>#}
+{#            </li>#}
+{#              {% endfor %}#}
+{#          </ul>#}
           <!-- Links -->
 
           <form class="form-inline">
@@ -196,7 +200,8 @@
       <section class="text-center mb-4">
 
         <div class="row wow fadeIn">
-            {% for item in object_list %}
+            {% for item in category_list %}
+
                 <div class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
@@ -204,7 +209,7 @@
 
               <!--Card image-->
               <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
+                <img src="{{ item.image.url }}" class="card-img-top" style="width: 220px; height: 140px;"
                   alt="">
                 <a href="{{ item.get_absolute_url }}">
                   <div class="mask rgba-white-slight"></div>

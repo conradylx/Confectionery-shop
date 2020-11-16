@@ -4,26 +4,44 @@ from django.db.models import Model, Sum
 from django.urls import reverse
 from django_countries.fields import CountryField
 
-CATEGORY_CHOICE = {
-    ('K','Kruche'),
-    ('S','Serniki'),
-    ('D','Drożdżowe')
-}
+# CATEGORY_CHOICE = {
+#     ('K', 'Kruche'),
+#     ('S', 'Serniki'),
+#     ('D', 'Drożdżowe')
+# }
 LABEL_CHOICE = {
-    ('P','primary'),
-    ('S','secondary'),
-    ('D','danger')
+    ('P', 'primary'),
+    ('S', 'secondary'),
+    ('D', 'danger')
 }
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Categorie"
+
+    def get_absolute_url(self):
+        return reverse('home')
+
+    @staticmethod
+    def get_all_categories(self):
+        return Category.objects.all()
 
 
 class Item(models.Model):
     title = models.CharField(max_length=120)
     price = models.FloatField()
     disc_price = models.FloatField(blank=True, null=True)
-    category = models.CharField(choices=CATEGORY_CHOICE, max_length=1)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     label = models.CharField(choices=LABEL_CHOICE, max_length=1)
     slug = models.SlugField()
     descr = models.TextField()
+    image = models.ImageField(upload_to = "static_files_proj/img/products/" )
 
     def __str__(self):
         return self.title
@@ -42,6 +60,17 @@ class Item(models.Model):
         return reverse("core:remove-from-cart", kwargs={
             'slug': self.slug
         })
+
+    @staticmethod
+    def get_all_products():
+        return Item.objects.all()
+
+    @staticmethod
+    def get_products_by_category(category_id):
+        if category_id:
+            return Item.objects.filter(category = category_id)
+        else:
+            return Item.get_all_products()
 
 
 class OrderItem(models.Model):

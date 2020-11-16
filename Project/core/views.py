@@ -9,21 +9,21 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 
 from .forms import CheckOutForm
-from .models import Item, Order, OrderItem, BillingAddress
+from .models import Item, Order, OrderItem, BillingAddress, Category
 
 
 def products(request):
     context = {
         "items": Item.objects.all()
     }
-    return render(request, 'product.html', context)
+    return render(request, 'categories.html', context)
 
 
 class CheckoutView(View):
     def get(self, *args, **kwargs):
         form = CheckOutForm()
-        context ={
-            'form' : form
+        context = {
+            'form': form
         }
         return render(self.request, 'checkout.html', context)
 
@@ -62,13 +62,32 @@ class HomeView(ListView):
     paginate_by = 4
     template_name = "home.html"
 
+    def get_context_data(self, *args, **kwargs):
+        category_menu = Category.objects.all()
+        context_items = super(HomeView, self).get_context_data(*args, **kwargs)
+        context_items["category_menu"] = category_menu
+        return context_items
+
+    def get_context_data(self, *args, **kwargs):
+        category_id = self.request.GET.get('category')
+        category_menu = Category.objects.all()
+        if category_id:
+            items = Item.get_products_by_category(category_id)
+            print(items)
+        else:
+            items = Item.get_all_products()
+        context_items = super(HomeView, self).get_context_data(*args, **kwargs)
+        context_items["category_list"] = items
+        context_items["category_menu"] = category_menu
+        return context_items
+
 
 class OrderSummaryView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             context = {
-                'object':order
+                'object': order
             }
             return render(self.request, 'order-summary.html', context)
         except ObjectDoesNotExist:
@@ -79,6 +98,7 @@ class OrderSummaryView(LoginRequiredMixin, View):
 class ItemDetailView(DetailView):
     model = Item
     template_name = "product.html"
+
 
 @login_required
 def add_to_cart(request, slug):
@@ -108,6 +128,7 @@ def add_to_cart(request, slug):
         messages.info(request, "This item was successfully updated to your cart")
 
     return redirect("core:order-summary")
+
 
 @login_required
 def remove_from_cart(request, slug):
@@ -141,7 +162,7 @@ def remove_item_from_cart(request, slug):
             order_item = OrderItem.objects.filter(
                 item=item, user=request.user, ordered=False
             )[0]
-            if order_item.quantity >1:
+            if order_item.quantity > 1:
                 order_item.quantity -= 1
                 order_item.save()
             else:
