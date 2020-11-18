@@ -62,11 +62,11 @@ class HomeView(ListView):
     paginate_by = 4
     template_name = "home.html"
 
-    def get_context_data(self, *args, **kwargs):
-        category_menu = Category.objects.all()
-        context_items = super(HomeView, self).get_context_data(*args, **kwargs)
-        context_items["category_menu"] = category_menu
-        return context_items
+    # def get_context_data(self, *args, **kwargs):
+    #     category_menu = Category.objects.all()
+    #     context_items = super(HomeView, self).get_context_data(*args, **kwargs)
+    #     context_items["category_menu"] = category_menu
+    #     return context_items
 
     def get_context_data(self, *args, **kwargs):
         category_id = self.request.GET.get('category')
@@ -197,3 +197,19 @@ def add_item_to_cart(request, slug):
     else:
         messages.info(request, "You dont have an order ")
         return redirect("core:product", slug=slug)
+
+
+class SearchView(ListView):
+    model = Item
+    template_name = "search.html"
+    context_object_name = "all_search_results"
+
+    def get_queryset(self):
+        result = super(SearchView, self).get_queryset()
+        query = self.request.GET.get('search')
+        if query:
+           object_list = Item.objects.filter(title__icontains=query)
+           result = object_list
+        else:
+           result = None
+        return result
