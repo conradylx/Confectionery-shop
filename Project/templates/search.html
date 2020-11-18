@@ -1,49 +1,100 @@
 {% extends 'home.html' %}
 
 {% block 'search' %}
-{% for item in all_search_results %}
-    <div class="col-lg-3 col-md-6 mb-4">
-        <!--Card-->
-        <div class="card">
-            <!--Card image-->
-            <div class="view overlay" style="float: left;">
-                <img src="{{ item.image.url }}" class="card-img-top"
-                     style="width: 260px; height: 160px;"
-                     alt="">
-                <a href="{{ item.get_absolute_url }}">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
+                <!--Navbar-->
+            <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+
+                <!-- Navbar brand -->
+                <span class="navbar-brand">Categories:</span>
+
+                <!-- Collapse button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse" id="basicExampleNav">
+
+                    <!-- Links -->
+                    <ul class="navbar-nav mr-auto">
+                        {% if category_menu %}
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/">Wszystkie</a>
+                                {#              <a class="nav-link" href="{% url 'core:categories' %}">{{ item }}</a>#}
+                            </li>
+                            {% for item in category_menu %}
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/?category={{ item.id }}">{{ item.name }}</a>
+                                    {#              <a class="nav-link" href="{% url 'core:categories' %}">{{ item }}</a>#}
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                    {#              <ul class="navbar-nav mr-auto">#}
+                    {#              {% for items in object_list %}#}
+                    {#            <li class="nav-item active">#}
+                    {#              <a class="nav-link" href="#">{{ items.category }}</a>#}
+                    {#            </li>#}
+                    {#              {% endfor %}#}
+                    {#          </ul>#}
+                    <!-- Links -->
+
+                    <form class="form-inline" method="GET" action="{% url 'core:search' %}">
+                        <div class="md-form my-0">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search" aria-label="Search">
+                        </div>
+                    </form>
+                </div>
+                <!-- Collapsible content -->
+
+            </nav>
+    {% for item in all_search_results %}
+        <div class="container">
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <!--Card-->
+            <div class="card">
+                <!--Card image-->
+                <div class="view overlay" style="float: left;">
+                    <img src="{{ item.image.url }}" class="card-img-top"
+                         style="width: 260px; height: 160px;"
+                         alt="">
+                    <a href="{{ item.get_absolute_url }}">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <!--Card image-->
+                <!--Card content-->
+                <div class="card-body text-center">
+                    <!--Category & Title-->
+                    <a href="" class="grey-text">
+                        <h5>{{ item.category }}</h5>
+                    </a>
+                    <h5>
+                        <strong>
+                            <a href="{{ item.get_absolute_url }}"
+                               class="dark-grey-text">{{ item.title }}
+                                <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>
+                            </a>
+                        </strong>
+                    </h5>
+                    <h4 class="font-weight-bold blue-text">
+                        <strong>
+                            {% if item.disc_price %}
+                                {{ item.disc_price }}
+                            {% else %}
+                                {{ item.price }}
+                            {% endif %} zł
+                        </strong>
+                    </h4>
+                </div>
+                <!--Card content-->
             </div>
-            <!--Card image-->
-            <!--Card content-->
-            <div class="card-body text-center">
-                <!--Category & Title-->
-                <a href="" class="grey-text">
-                    <h5>{{ item.category }}</h5>
-                </a>
-                <h5>
-                    <strong>
-                        <a href="{{ item.get_absolute_url }}"
-                           class="dark-grey-text">{{ item.title }}
-                            <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>
-                        </a>
-                    </strong>
-                </h5>
-                <h4 class="font-weight-bold blue-text">
-                    <strong>
-                        {% if item.disc_price %}
-                            {{ item.disc_price }}
-                        {% else %}
-                            {{ item.price }}
-                        {% endif %} zł
-                    </strong>
-                </h4>
-            </div>
-            <!--Card content-->
+            <!--Card-->
         </div>
-        <!--Card-->
-    </div>
-    {% empty %}
-    None to display
-{% endfor %}
+        {% empty %}
+        None to display
+    {% endfor %}
+</div>
 {% endblock %}
