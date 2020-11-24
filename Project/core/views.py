@@ -12,13 +12,6 @@ from .forms import CheckOutForm
 from .models import Item, Order, OrderItem, BillingAddress, Category
 
 
-def products(request):
-    context = {
-        "items": Item.objects.all()
-    }
-    return render(request, 'categories.html', context)
-
-
 class CheckoutView(View):
     def get(self, *args, **kwargs):
         form = CheckOutForm()
@@ -199,13 +192,13 @@ def add_item_to_cart(request, slug):
         return redirect("core:product", slug=slug)
 
 
-class SearchView(ListView):
+class CategoryView(ListView):
     model = Item
     template_name = "search.html"
     context_object_name = "all_search_results"
 
     def get_queryset(self):
-        result = super(SearchView, self).get_queryset()
+        result = super(CategoryView, self).get_queryset()
         query = self.request.GET.get('search')
         if query:
            object_list = Item.objects.filter(title__icontains=query)
@@ -222,7 +215,7 @@ class SearchView(ListView):
             print(items)
         else:
             items = Item.get_all_products()
-        context_items = super(SearchView, self).get_context_data(*args, **kwargs)
+        context_items = super(CategoryView, self).get_context_data(*args, **kwargs)
         context_items["category_list"] = items
         context_items["category_menu"] = category_menu
         return context_items
