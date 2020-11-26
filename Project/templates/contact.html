@@ -39,11 +39,27 @@
                                 <h3>Contact Us</h3>
                                 <form method="POST">
                                     {% csrf_token %}
-                                    {{ form.as_p }}
+                                    <div>
+                                        <span><label>NAME</label></span>
+                                        {{  form.name }}
+                                    </div>
+                                    <div>
+                                        <span><label>E-MAIL</label></span>
+                                        {{  form.email }}
+                                    </div>
+                                    <div>
+                                        <span><label>MOBILE</label></span>
+                                        {{  form.phone }}
+                                    </div>
+                                    <div>
+                                        <span><label>SUBJECT</label></span>
+                                        {{  form.message }}
+                                    </div>
                                     <div>
                                         <span><input type="submit" value="Submit"></span>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                     </div>

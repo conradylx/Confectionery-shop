@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
@@ -79,10 +80,6 @@ class HomeView(ListView):
 class AboutView(ListView):
     model = Item
     template_name = "about.html"
-
-
-def contact(request):
-    return render(request, 'contact.html')
 
 
 class OrderSummaryView(LoginRequiredMixin, View):
@@ -230,10 +227,15 @@ class CategoryView(ListView):
         context_items["category_menu"] = category_menu
         return context_items
 
+
 def contact_us(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            sender_name = form.cleaned_data['name']
+            sender_email = form.cleaned_data['email']
+            message = "{0} has sent you a new message:\n\n{1}".format(sender_name, form.cleaned_data['message'])
+            send_mail('New Enquiry', message, sender_email, ['frankysanky@gmail.com'])
             return HttpResponse('Thank you for contacting us!')
     else:
         form = ContactForm()

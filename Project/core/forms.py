@@ -7,6 +7,7 @@ PAYMENT_CHOICES = (
     ('P', 'Paypal')
 )
 
+
 class CheckOutForm(forms.Form):
     street_address = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': '1234 Street'
@@ -27,7 +28,7 @@ class CheckOutForm(forms.Form):
 
 
 class ContactForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    email = forms.EmailField()
-    phone = forms.CharField(max_length=12)
-    message = forms.CharField(widget=forms.Textarea)
+    name = forms.CharField(max_length=100, error_messages=None)
+    email = forms.EmailField(error_messages=None)
+    phone = forms.CharField(max_length=12, error_messages=None)
+    message = forms.CharField(widget=forms.Textarea, error_messages=None)
