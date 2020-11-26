@@ -24,3 +24,10 @@ class CheckOutForm(forms.Form):
     save_info = forms.BooleanField(required=False)
     payment_option = forms.ChoiceField(
         widget=forms.RadioSelect, choices=PAYMENT_CHOICES)
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    phone = forms.CharField(max_length=12)
+    message = forms.CharField(widget=forms.Textarea)

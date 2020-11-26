@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.views import View
@@ -8,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 
-from .forms import CheckOutForm
+from .forms import CheckOutForm, ContactForm
 from .models import Item, Order, OrderItem, BillingAddress, Category
 
 
@@ -228,3 +229,15 @@ class CategoryView(ListView):
         context_items["category_list"] = items
         context_items["category_menu"] = category_menu
         return context_items
+
+def contact_us(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            return HttpResponse('Thank you for contacting us!')
+    else:
+        form = ContactForm()
+    context = {
+        "form": form
+    }
+    return render(request, 'contact.html', context)
