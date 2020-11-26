@@ -75,6 +75,15 @@ class HomeView(ListView):
         return context_items
 
 
+class AboutView(ListView):
+    model = Item
+    template_name = "about.html"
+
+
+def contact(request):
+    return render(request, 'contact.html')
+
+
 class OrderSummaryView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
