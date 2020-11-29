@@ -295,7 +295,7 @@
 
                         {% if page_obj.has_previous %}
                             <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&{{ key }}={{ value }}{% endifnotequal %}{% endfor %}"
                                    aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                     <span class="sr-only">Previous</span>
@@ -304,12 +304,12 @@
                         {% endif %}
 
                         <li class="page-item active">
-                            <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</a>
+                            <a class="page-link" href="?page={{ page_obj.number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&{{ key }}={{ value }}{% endifnotequal %}{% endfor %}"">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</a>
                         </li>
 
                         {% if page_obj.has_next %}
                             <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                     <span class="sr-only">Next</span>
                                 </a>
@@ -319,7 +319,6 @@
                 </nav>
             {% endif %}
             <!--Pagination-->
-
         </div>
     </main>
     <!--Main layout-->

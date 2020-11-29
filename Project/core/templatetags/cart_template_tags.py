@@ -10,3 +10,12 @@ def cart_item_count(user):
         if qs.exists():
             return qs[0].items.count()
     return 0
+
+
+# register = template.Library()
+
+# @register.simple_tag(takes_context=True)
+# def url_replace(context, **kwargs):
+#     query = context['request'].GET.copy()
+#     query.update(kwargs)
+#     return query.urlencode()

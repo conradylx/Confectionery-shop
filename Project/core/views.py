@@ -58,22 +58,17 @@ class HomeView(ListView):
     template_name = "home.html"
     context_object_name = "cakes"
 
-    # def get_context_data(self, *args, **kwargs):
-    #     category_menu = Category.objects.all()
-    #     context_items = super(HomeView, self).get_context_data(*args, **kwargs)
-    #     context_items["category_menu"] = category_menu
-    #     return context_items
-
-    def get_context_data(self, *args, **kwargs):
+    def get_queryset(self, *args, **kwargs):
         category_id = self.request.GET.get('category')
-        category_menu = Category.objects.all()
         if category_id:
             items = Item.get_products_by_category(category_id)
-            print(items)
         else:
             items = Item.get_all_products()
+        return items
+
+    def get_context_data(self, *args, **kwargs):
+        category_menu = Category.objects.all()
         context_items = super(HomeView, self).get_context_data(*args, **kwargs)
-        context_items["category_list"] = items[:4]
         context_items["category_menu"] = category_menu
         return context_items
 
@@ -220,7 +215,6 @@ class CategoryView(ListView):
         category_menu = Category.objects.all()
         if category_id:
             items = Item.get_products_by_category(category_id)
-            print(items)
         else:
             items = Item.get_all_products()
         context_items = super(CategoryView, self).get_context_data(*args, **kwargs)
