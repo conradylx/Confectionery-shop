@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
     <!--Main layout-->
     <main>
         <div class="container" style="margin-top: 60px;">
@@ -38,7 +37,7 @@
                         {% endif %}
                     </ul>
                     <div class="logo">
-                        <a href="index.html"><img src="{% static '/img/logo.png' %}" title="Sweetcake"/></a>
+                        <a href="/"><img src="{% static '/img/logo.png' %}" title="Sweetcake"/></a>
                     </div>
                     {#              <ul class="navbar-nav mr-auto">#}
                     {#              {% for items in object_list %}#}
@@ -150,11 +149,6 @@
                                         <strong>Come and taste Karolcia's newest apple cakes with home-made vanilla
                                             ice-cream!</strong>
                                     </p>
-                                    <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/"
-                                       class="btn btn-outline-white btn-lg">Start
-                                        free tutorial
-                                        <i class="fas fa-graduation-cap ml-2"></i>
-                                    </a>
                                 </div>
                                 <!-- Content -->
                             </div>
@@ -291,10 +285,10 @@
             <!--Pagination-->
             {% if is_paginated %}
                 <nav class="d-flex justify-content-center wow fadeIn">
-                    <ul class="pagination pg-blue">
+                    <ul class="pagination">
 
                         {% if page_obj.has_previous %}
-                            <li class="page-item">
+                            <li class="page-item red lighten-3">
                                 <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&{{ key }}={{ value }}{% endifnotequal %}{% endfor %}"
                                    aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
@@ -304,12 +298,12 @@
                         {% endif %}
 
                         <li class="page-item active">
-                            <a class="page-link" href="?page={{ page_obj.number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&{{ key }}={{ value }}{% endifnotequal %}{% endfor %}"">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</a>
+                            <a class="page-link red lighten-2" href="?page={{ page_obj.number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&{{ key }}={{ value }}{% endifnotequal %}{% endfor %}"">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</a>
                         </li>
 
                         {% if page_obj.has_next %}
                             <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next">
+                                <a class="page-link red lighten-3" href="?page={{ page_obj.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                     <span class="sr-only">Next</span>
                                 </a>
