@@ -56,6 +56,7 @@ class HomeView(ListView):
     model = Item
     paginate_by = 4
     template_name = "home.html"
+    context_object_name = "cakes"
 
     # def get_context_data(self, *args, **kwargs):
     #     category_menu = Category.objects.all()
@@ -72,7 +73,7 @@ class HomeView(ListView):
         else:
             items = Item.get_all_products()
         context_items = super(HomeView, self).get_context_data(*args, **kwargs)
-        context_items["category_list"] = items
+        context_items["category_list"] = items[:4]
         context_items["category_menu"] = category_menu
         return context_items
 
@@ -208,10 +209,10 @@ class CategoryView(ListView):
         result = super(CategoryView, self).get_queryset()
         query = self.request.GET.get('search')
         if query:
-           object_list = Item.objects.filter(title__icontains=query)
-           result = object_list
+            object_list = Item.objects.filter(title__icontains=query)
+            result = object_list
         else:
-           result = None
+            result = None
         return result
 
     def get_context_data(self, *args, **kwargs):

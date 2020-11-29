@@ -28,7 +28,7 @@ class CheckOutForm(forms.Form):
 
 
 class ContactForm(forms.Form):
-    name = forms.CharField(max_length=100, error_messages=None)
-    email = forms.EmailField(error_messages=None)
-    phone = forms.CharField(max_length=12, error_messages=None)
-    message = forms.CharField(widget=forms.Textarea, error_messages=None)
+    name = forms.CharField(max_length=100, error_messages=None, required=True)
+    email = forms.EmailField(error_messages=None, required=True)
+    phone = forms.CharField(max_length=12, error_messages=None, required=True)
+    message = forms.CharField(widget=forms.Textarea, error_messages=None, required=True)

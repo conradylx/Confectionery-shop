@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
     <!--Main layout-->
     <main>
-        <div class="container">
+        <div class="container" style="margin-top: 60px;">
 
             <!--Navbar-->
-            <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+{#        Lub red darken-4#}
+            <nav class="navbar navbar-expand-lg navbar-dark mdb-color red lighten-2 mt-3 mb-5" >
 
                 <!-- Navbar brand -->
                 <span class="navbar-brand">Categories:</span>
@@ -35,6 +37,9 @@
                             {% endfor %}
                         {% endif %}
                     </ul>
+                    <div class="logo">
+                        <a href="index.html"><img src="{% static '/img/logo.png' %}" title="Sweetcake"/></a>
+                    </div>
                     {#              <ul class="navbar-nav mr-auto">#}
                     {#              {% for items in object_list %}#}
                     {#            <li class="nav-item active">#}
@@ -59,7 +64,7 @@
 
             <!--Carousel Wrapper-->
             <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel"
-            style="margin-top: -50px">
+            style="margin-top: 50px">
 
                 <!--Indicators-->
                 <ol class="carousel-indicators">
@@ -225,7 +230,7 @@
                             None to display
                         {% endfor %}
                     {% else %}
-                        {% for item in category_list %}
+                        {% for item in cakes %}
 
                             <div class="col-lg-3 col-md-6 mb-4">
 
@@ -280,6 +285,7 @@
                 </div>
 
             </section>
+
             <!--Section: Products v.3-->
 
             <!--Pagination-->
@@ -298,12 +304,7 @@
                         {% endif %}
 
                         <li class="page-item active">
-                            <a class="page-link" href=#">1
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                            <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</a>
                         </li>
 
                         {% if page_obj.has_next %}
