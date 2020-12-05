@@ -94,7 +94,16 @@ class OrderSummaryView(LoginRequiredMixin, View):
 class ItemDetailView(DetailView):
     model = Item
     template_name = "product.html"
+    context_object_name = "product"
 
+    def get_context_data(self, **kwargs):
+        context = super(ItemDetailView, self).get_context_data(**kwargs)
+        context2 = super(ItemDetailView, self).get_context_data(**kwargs)
+        context_related = Category.objects.filter(id__in=self.object.get_products_by_category(self.object.category.id))
+        context_related2 = Item.objects.filter(category__in=context_related)[:3]
+        context['related'] = context_related2
+        print(context_related2)
+        return context
 
 @login_required
 def add_to_cart(request, slug):

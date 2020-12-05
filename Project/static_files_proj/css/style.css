@@ -31,6 +31,12 @@ body,
     }
 }
 
+.card {
+    font-weight: 400;
+    border: 0;
+    min-height: 330px;
+}
+
 /* Footer color for sake of consistency with Navbar */
 .page-footer {
     background-color: #929FBA;

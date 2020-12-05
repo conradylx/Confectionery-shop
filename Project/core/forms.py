@@ -15,6 +15,9 @@ class CheckOutForm(forms.Form):
     apartment_address = forms.CharField(required=False, widget=forms.TextInput(attrs={
         'placeholder': '2000/22'
     }))
+    city = forms.CharField(required=True, widget=forms.TextInput(attrs={
+        'class': 'form-control'
+    }))
     country = CountryField(blank_label='(select country)').formfield(widget=CountrySelectWidget(attrs={
         'class':'custom-select d-block w-100'
     }))
