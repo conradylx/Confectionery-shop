@@ -17,8 +17,10 @@ from .models import Item, Order, OrderItem, BillingAddress, Category
 class CheckoutView(View):
     def get(self, *args, **kwargs):
         form = CheckOutForm()
+        order = Order.objects.get(user=self.request.user, ordered=False)
         context = {
-            'form': form
+            'form': form,
+            'ordered_items': order
         }
         return render(self.request, 'checkout.html', context)
 

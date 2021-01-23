@@ -30,7 +30,7 @@
                             </li>
                             {% for item in category_menu %}
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="/?category={{ item.id }}">{{ item.name }}</a>
+                                    <a class="nav-link" href="?category={{ item.id }}">{{ item.name }}</a>
                                     {#              <a class="nav-link" href="{% url 'core:categories' %}">{{ item }}</a>#}
                                 </li>
                             {% endfor %}
@@ -200,8 +200,8 @@
                                         </a>
                                         <h5>
                                             <strong>
-                                                <a href="{{ item.get_absolute_url }}
-                                                class="dark-grey-text" {{ item.title }}</a>
+                                                <a href="{{ item.get_absolute_url }}"
+                                                class="dark-grey-text"> {{ item.title }}</a>
                                                 <div>
                                                     {% if item.label == 'P' %}
                                                         <span class="badge badge-pill primary-color">New</span>
@@ -317,7 +317,7 @@
                                 {% for key,value in request.GET.items %}
                                     {% ifnotequal key 'page' %}&{{ key }}={{ value }}
                                     {% endifnotequal %}
-                                {% endfor %}"">
+                                {% endfor %}">
                                 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
                             </a>
                         </li>
