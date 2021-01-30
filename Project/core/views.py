@@ -90,8 +90,8 @@ class OrderSummaryView(LoginRequiredMixin, View):
             return render(self.request, 'order-summary.html', context)
         except ObjectDoesNotExist:
             # messages.error(request="You dont have active orders")
-            messages.error(self.request, "Koszyk jest pusty.")
-            return redirect("/shop")
+            messages.error(request="Koszyk jest pusty.")
+            return redirect("/")
 
 
 class ItemDetailView(DetailView):
