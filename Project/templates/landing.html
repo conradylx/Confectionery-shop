@@ -1,0 +1,380 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="main-top">
+        <div class="container d-lg-flex justify-content-between align-items-center">
+            <!-- logo -->
+            <h1 class="logo-style-res float-left">
+                <a class="navbar-brand" href="/">
+                    <img src="{% static 'images/logo.png' %}" alt="" class="img-fluid logo-img mt-1">Baking Corner
+                </a>
+            </h1>
+            <!-- //logo -->
+            <!-- nav -->
+            <div class="nav_w3ls mx-lg-auto">
+                <nav>
+                    <label for="drop" class="toggle">Menu</label>
+                    <input type="checkbox" id="drop"/>
+                    <ul class="menu mx-lg-auto">
+                        <li><a href="#about">O nas</a></li>
+                        <li>
+                            <!-- First Tier Drop Down -->
+                            <label for="drop-2" class="toggle toogle-2">Pages <span class="fa fa-angle-down"
+                                                                                    aria-hidden="true"></span>
+                            </label>
+                            <a href="#">Inne <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                            <input type="checkbox" id="drop-2"/>
+                            <ul>
+                                <li><a href="#chefs" class="drop-text">Cukiernicy</a></li>
+                                <li><a href="#services" class="drop-text">Usługi</a></li>
+                                <li><a href="#what" class="drop-text">Osiągnięcia</a></li>
+                                <li><a href="#testi" class="drop-text">Opinie klientów</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#gallery">Galeria</a></li>
+                        <li><a href="/contact">Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- //nav -->
+            <!-- dwn -->
+            <div class="text-center">
+                <a href="/shop" class="login-button-2 text-uppercase text-wh mt-lg-0 mt-2">Sklep online</a>
+            </div>
+            <!-- //dwn -->
+        </div>
+    </div>
+    <!-- //navigation -->
+    <!-- //header 2 -->
+
+    <!-- banner slider -->
+    <div id="homepage-slider" class="st-slider">
+        <input type="radio" class="cs_anchor radio" name="slider" id="play1" checked=""/>
+        <input type="radio" class="cs_anchor radio" name="slider" id="slide1"/>
+        <input type="radio" class="cs_anchor radio" name="slider" id="slide2"/>
+        <input type="radio" class="cs_anchor radio" name="slider" id="slide3"/>
+        <div class="images">
+            <div class="images-inner">
+                <div class="image-slide">
+                    <div class="banner-w3ls-1">
+
+                    </div>
+                </div>
+                <div class="image-slide">
+                    <div class="banner-w3ls-2">
+
+                    </div>
+                </div>
+                <div class="image-slide">
+                    <div class="banner-w3ls-3">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="labels">
+            <div class="fake-radio">
+                <label for="slide1" class="radio-btn"></label>
+                <label for="slide2" class="radio-btn"></label>
+                <label for="slide3" class="radio-btn"></label>
+            </div>
+        </div>
+    </div>
+    <!-- //banner slider -->
+
+    <!-- banner bottom grids -->
+    <section class="banner-bottom-w3layouts pb-5" id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 about-in text-center">
+                    <div class="serv-cont-wthree">
+                        <div class="icon-wthrees">
+                            <span class="fa fa-birthday-cake"></span>
+                        </div>
+                        <h5 class="card-title mb-3 mt-4">Urodziny</h5>
+                        <p class="card-text">Zamów na urodziny swojego dziecka - jego mina będzie bezcenna</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 about-in text-center my-lg-0 my-4">
+                    <div class="serv-cont-wthree">
+                        <div class="icon-wthrees">
+                            <span class="fas fa-church"></span>
+                        </div>
+                        <h5 class="card-title mb-3 mt-4">Komunia</h5>
+                        <p class="card-text">W cukierni Baking Corner mona zamówić wyjątkowe torty komunijne i na
+                            chrzciny </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 about-in text-center">
+                    <div class="serv-cont-wthree">
+                        <div class="icon-wthrees">
+                            <span class="fas fa-glass-cheers"></span>
+                        </div>
+                        <h5 class="card-title mb-3 mt-4">Wesele</h5>
+                        <p class="card-text">Poznaj cukiernie, w których zamówisz modne autorskie torty weselne! </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //banner bottom grids -->
+
+    <!-- about -->
+    <section class="w3ls-bnrbtm py-5" id="about" style="background-color: white">
+        <div class="container py-xl-5 py-lg-3">
+            <div class="row pb-5">
+                <div class="col-lg-6">
+                    <img class="img-fluid" src="{% static 'images/ab.jpg' %}" alt="">
+                </div>
+                <div class="col-lg-6 pl-lg-5 mt-lg-0 mt-5">
+                    <h3 class="mb-4" style="margin-top: 0em">Zapraszamy do cukierni Baking Corner!</h3>
+                    <p>Baking Corner to miejsce, w którym od 1946 roku rozpieszczamy podniebienia,
+                        łączymy pokolenia i zabieramy w pasjonującą podróż do świata słodyczy.</p>
+                    <p style="margin-top: 0.5em">Marka założona została w Bydgoszczy przez Feliksa Sowę i jego małżonkę
+                        Stanisławę.
+                        Firma rozwijała się prężnie, z każdym kolejnym rokiem zatrudniając więcej pracowników,
+                        zyskując zadowolonych klientów i prestiżowe wyróżnienia.</p>
+                </div>
+            </div>
+            <div class="row flex-row-reverse border-top pt-lg-5 pt-sm-4 pt-2 mt-lg-5 mt-sm-4 mt-2">
+                <div class="col-lg-6">
+                    <img class="img-fluid mt-5" src="{% static 'images/ab2.jpg' %}" alt="">
+                </div>
+                <div class="col-lg-6 mt-5">
+                    <h3 class="mb-4">Sieć cukierni w całej Polsce</h3>
+                    <p>Nasze torty i ciasta na zamówienie dostarczamy m.in. w Szczecinie, Katowicach, Łodzi,
+                        Gdańsku. Spotkasz nas też stacjonarnie, oprócz wcześniej wymienionych miast, w Warszawie,
+                        Wrocławiu, Lublinie, Poznaniu, Bydgoszczy czy Białymstoku.</p>
+                    <p style="margin-top: 0.5em">Odwiedź nas i daj się porwać do świata, w którym rządzą:
+                        wyborny smak, naturalne składniki i tradycyjne receptury.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about -->
+
+    <!-- team -->
+    <section class="teams py-5" id="chefs">
+        <div class="container py-xl-5 py-lg-3">
+            <h3 class="title-w3ls text-center text-wh mb-5">Nasi najlepsi cukiernicy</h3>
+            <div class="row text-center">
+                <div class="col-lg-4">
+                    <div class="team-gd">
+                        <img src="{% static 'images/t1.jpg' %}" class="img-fluid" alt="user-image">
+                        <div class="team-info mt-4">
+                            <h3 class="mb-2"><span class="sub-tittle-team">Chef 01</span> Marian Kowalski</h3>
+                            <p>Doświadczony od 10 lat cukiernik. Jego specjalizacją są torty weselne. </p>
+                            <ul class="social_section_1info list-unstyled pt-2 mt-4">
+                                <li class="d-inline facebook">
+                                    <a href="#"><span class="fa fa-facebook mr-1"></span>facebook</a>
+                                </li>
+                                <li class="d-inline twitter">
+                                    <a href="#"><span class="fa fa-twitter mr-1"></span>twitter</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-lg-0 mt-5">
+                    <div class="team-gd">
+                        <img src="{% static 'images/t2.jpg' %}" class="img-fluid" alt="user-image">
+                        <div class="team-info mt-4">
+                            <h3 class="mb-2"><span class="sub-tittle-team">Chef 02</span> Adrian Nowik</h3>
+                            <p>Prawdziwa artystka w kreatywnych dekorachach ciast dla najmłodszych</p>
+                            <ul class="social_section_1info list-unstyled pt-2 mt-4">
+                                <li class="d-inline google">
+                                    <a href="#"><span class="fa fa-google-plus mr-1"></span>google</a>
+                                </li>
+                                <li class="d-inline linkedin">
+                                    <a href="#"><span class="fa fa-linkedin mr-1"></span>linkedin</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-lg-0 mt-5">
+                    <div class="team-gd">
+                        <img src="{% static 'images/t3.jpg' %}" class="img-fluid" alt="user-image">
+                        <div class="team-info mt-4">
+                            <h3 class="mb-2"><span class="sub-tittle-team">Chef 03</span> Miley Cornwall</h3>
+                            <p>Upiecze dla Ciebie ciasta według rodzinnych angielskich receptur</p>
+                            <ul class="social_section_1info list-unstyled pt-2 mt-4">
+                                <li class="d-inline facebook">
+                                    <a href="#"><span class="fa fa-facebook mr-1"></span>facebook</a>
+                                </li>
+                                <li class="d-inline twitter">
+                                    <a href="#"><span class="fa fa-twitter mr-1"></span>twitter</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //team -->
+    <!-- who we are -->
+    <section class="w3ls-bnrbtm py-5" id="what" style="background-color: white">
+		<div class="row no-gutters">
+			<div class="col-xl-6 text-center">
+				<img class="img-fluid" src="{% static 'images/who.jpg' %}" alt="">
+			</div>
+			<div class="col-xl-6 who-left-w3pvt d-flex">
+				<div class="w3layouts-bgs align-self-center mt-xl-5">
+					<h6 class="text-colors let-spa" style="margin-top:30px;">Nasze osiągnięcia</h6>
+                    <h3 class="title-w3ls-2 mt-1 mb-xl-5 mb-4 pb-xl-2">Witamy w naszej cukierni</h3>
+                    <div class="d-flex services-box mt-5">
+                        <div class="icon">
+                            <span class="fa fa-trophy"></span>
+                        </div>
+                        <div class="service-content" style="margin-top:-20px;">
+                            <h4>Jesteśmy zwyciężcami w ponad 20 konkursach</h4>
+                            <p class="serp">Nasze piekarnie aktywnie biorą udział w różnych konkurach,
+                                min. na najwspanialszy tort weselny.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex services-box mt-5">
+                        <div class="icon">
+                            <span class="fa fa-users"></span>
+                        </div>
+                        <div class="service-content" style="margin-top:-20px;">
+                            <h4>12 profesjonalnych nauczycieli cukiernictwa</h4>
+                            <p class="serp">Nasi najlepsi pracownicy otrzymują tytuły nauczycieli cukiernictwa
+                                            oraz dodatkowe benefity.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex services-box mt-5">
+                        <div class="icon">
+                            <span class="fa fa-thumbs-up"></span>
+                        </div>
+                        <div class="service-content" style="margin-top:-20px;">
+                            <h4>Gwarancja zatrudnienia</h4>
+                            <p class="serp">Adepci naszej akademii dołączają do załogi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="row no-gutters" id="testi">
+			<div class="col-xl-6 who-left-w3pvt-2 d-flex">
+				<div class="w3layouts-bgs-2 align-self-center mb-xl-5 pb-xl-5" style="background-color: white; margin-top: -10px">
+					<h6 class="text-colors let-spa">Referencje</h6>
+                    <h3 class="title-w3ls-2 mt-1 mb-xl-5 mb-4">Opinie klientów</h3>
+                    <ul class="list-unstyled who-lists mt-5 ml-5">
+                        <li><span class="fa fa-caret-right"></span>Anna</li>
+                        <p><q>Coś niesamowitego jakie cuda potrafią zrobić w cukierni. Pełen profesjonalizm.Dziękuję bardzo</q></p>
+                        <li><span class="fa fa-caret-right"></span>Katarzyna</li>
+                        <p><q>Piękny i przepyszny tort weselny! Wszystkim bardzo smakował. Ciasta też bardzo dobre. Polecamy z całego serca i dziękujemy </q></p>
+                        <li><span class="fa fa-caret-right"></span>Andrzej</li>
+                        <p><q>W 100% polecam przepyszne torty, ciasta i ciasteczka pierwszorzedna obsługa na Daszyńskiego w Gliwicach </q></p>
+                        <li><span class="fa fa-caret-right"></span>Jadwiga</li>
+                        <p><q>Przepyszne i przepięknie wykonane torty.</q></p>
+                    </ul>
+				</div>
+			</div>
+			<div class="col-xl-6 text-xl-right text-center">
+				<img class="img-fluid rounded" src="{% static 'images/who2.jpg' %}" alt="">
+			</div>
+		</div>
+	</section>
+    <!-- //who we are -->
+
+    <!-- gallery -->
+    <div class="gallery py-5" id="gallery" style="background-color: white; margin-top: -50px;">
+        <div class="container py-xl-5 py-lg-3">
+            <h3 class="title-w3ls text-center text-bl mb-5">Galeria wypieków</h3>
+            <div class="row no-gutters">
+                <div class="col-md-4 gallery-grid1">
+                    <a href="#gal1">
+                        <img src="{% static 'images/g1.jpg' %}" alt=" " class="img-fluid"/>
+                    </a>
+                </div>
+                <div class="col-md-4 gallery-grid1">
+                    <a href="#gal2">
+                        <img src="{% static 'images/g2.jpg' %}" alt=" " class="img-fluid"/>
+                    </a>
+                </div>
+                <div class="col-md-4 gallery-grid1">
+                    <a href="#gal3">
+                        <img src="{% static 'images/g3.jpg' %}" alt=" " class="img-fluid"/>
+                    </a>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-md-4 gallery-grid1">
+                    <a href="#gal4">
+                        <img src="{% static 'images/g4.jpg' %}" alt=" " class="img-fluid"/>
+                    </a>
+                </div>
+                <div class="col-md-4 gallery-grid1">
+                    <a href="#gal5">
+                        <img src="{% static 'images/g5.jpg' %}" alt=" " class="img-fluid"/>
+                    </a>
+                </div>
+                <div class="col-md-4 gallery-grid1">
+                    <a href="#gal6">
+                        <img src="{% static 'images/g6.jpg' %}" alt=" " class="img-fluid"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- gallery popups -->
+        <!-- popup-->
+        <div id="gal1" class="pop-overlay animate">
+            <div class="popup">
+                <img src="{% static 'images/g1.jpg' %}" alt="Popup Image" class="img-fluid"/>
+                <p class="mt-4">Kakaowe ciastka z kawałkami czekolady.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+        <!-- popup-->
+        <div id="gal2" class="pop-overlay animate">
+            <div class="popup">
+                <img src="{% static 'images/g2.jpg' %}" alt="Popup Image" class="img-fluid"/>
+                <p class="mt-4">Przygotowanie do wypieku pączków z nadzieniem różanym.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+        <!-- popup-->
+        <div id="gal3" class="pop-overlay animate">
+            <div class="popup">
+                <img src="{% static 'images/g3.jpg' %}" alt="Popup Image" class="img-fluid"/>
+                <p class="mt-4">Pieczemy ciasto francuskie.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup3 -->
+        <!-- popup-->
+        <div id="gal4" class="pop-overlay animate">
+            <div class="popup">
+                <img src="{% static 'images/g4.jpg' %}" alt="Popup Image" class="img-fluid"/>
+                <p class="mt-4">Pierniki toruńskie według receptury staropolskiej.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+        <!-- popup-->
+        <div id="gal5" class="pop-overlay animate">
+            <div class="popup">
+                <img src="{% static 'images/g5.jpg' %}" alt="Popup Image" class="img-fluid"/>
+                <p class="mt-4">Dekorujemy pierniki lukrem.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+        <!-- popup-->
+        <div id="gal6" class="pop-overlay animate">
+            <div class="popup">
+                <img src="{% static 'images/g6.jpg' %}" alt="Popup Image" class="img-fluid"/>
+                <p class="mt-4">Pierniki już gotowe. Zapraszamy wszystkich chętnych do cukierni na Daszyńskiego w Warszawie.
+                    Wesołych Świąt!</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+        <!-- //gallery popups -->
+    </div>
+    <!-- //gallery -->
+{% endblock content %}

@@ -20,27 +20,26 @@ class CheckoutView(View):
         order = Order.objects.get(user=self.request.user, ordered=False)
         context = {
             'form': form,
-            'ordered_items': order
+            'ordered_items': order,
         }
         return render(self.request, 'checkout.html', context)
 
     def post(self, *args, **kwargs):
-        form = CheckOutForm(self.request.POST or None)
+        form = CheckOutForm(self.request.POST or None, initial={'country': 'PL'})
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             if form.is_valid():
                 street_address = form.cleaned_data.get('street_address')
                 apartment_address = form.cleaned_data.get('apartment_address')
                 country = form.cleaned_data.get('country')
+                city = form.cleaned_data.get('city')
                 zip = form.cleaned_data.get('zip')
-                # same_billing_address = form.cleaned_data.get('same_billing_address')
-                # save_info = form.cleaned_data.get('save_info')
-                payment_option = form.cleaned_data.get('payment_option')
                 billing_address = BillingAddress(
                     user=self.request.user,
                     street_address=street_address,
                     apartment_address=apartment_address,
                     country=country,
+                    city=city,
                     zip=zip
                 )
                 billing_address.save()
@@ -50,13 +49,14 @@ class CheckoutView(View):
             messages.warning(self.request, "Failed check out")
             return redirect('core:checkout')
         except ObjectDoesNotExist:
-            messages.error(request="You dont have active orders")
+            # messages.error(request="You dont have active orders")
+            messages.error(request="Koszyk jest pusty.")
             return redirect("core:order_summary")
 
 
 class HomeView(ListView):
     model = Item
-    paginate_by = 4
+    paginate_by = 8
     template_name = "home.html"
     context_object_name = "cakes"
 
@@ -89,8 +89,9 @@ class OrderSummaryView(LoginRequiredMixin, View):
             }
             return render(self.request, 'order-summary.html', context)
         except ObjectDoesNotExist:
-            messages.error(request="You dont have active orders")
-            return redirect("/")
+            # messages.error(request="You dont have active orders")
+            messages.error(self.request, "Koszyk jest pusty.")
+            return redirect("/shop")
 
 
 class ItemDetailView(DetailView):
@@ -100,7 +101,7 @@ class ItemDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ItemDetailView, self).get_context_data(**kwargs)
-        context2 = super(ItemDetailView, self).get_context_data(**kwargs)
+        # context2 = super(ItemDetailView, self).get_context_data(**kwargs)
         context_related = Category.objects.filter(id__in=self.object.get_products_by_category(self.object.category.id))
         context_related2 = Item.objects.filter(category__in=context_related)[:3]
         context['related'] = context_related2
@@ -122,17 +123,17 @@ def add_to_cart(request, slug):
         if order.items.filter(Q(item__slug=item.slug)).exists():
             order_item.quantity += 1
             order_item.save()
-            messages.info(request, "This item was successfully updated to your cart")
+            messages.info(request, "Koszyk został zaktualizowany.")
             return redirect("core:order-summary")
         else:
-            messages.info(request, "This item was successfully added to your cart")
+            messages.info(request, "Produkt został dodany do koszyka.")
             order.items.add(order_item)
             return redirect("core:order-summary")
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
-        messages.info(request, "This item was successfully updated to your cart")
+        messages.info(request, "Produkt został zaktualizowany w koszyku.")
 
     return redirect("core:order-summary")
 
@@ -149,13 +150,13 @@ def remove_from_cart(request, slug):
             )[0]
             order.items.remove(order_item)
             order_item.delete()
-            messages.info(request, "This item was removed from your cart.")
+            messages.info(request, "Produkt został usunięty z koszyka.")
             return redirect("core:order-summary")
         else:
-            messages.info(request, "This item was not in your cart")
+            messages.info(request, "Produkt nie znajduje się w koszyku.")
             return redirect("core:product", slug=slug)
     else:
-        messages.info(request, "You do not have an active order")
+        messages.info(request, "Brak aktywnego zamówienia")
         return redirect("core:product", slug=slug)
 
 
@@ -174,13 +175,13 @@ def remove_item_from_cart(request, slug):
                 order_item.save()
             else:
                 order.items.remove(order_item)
-            messages.info(request, "This item quantity was updated")
+            messages.info(request, "Zaktualizowano ilość produktu.")
             return redirect("core:order-summary")
         else:
-            messages.info(request, "This item is not in your cart")
+            messages.info(request, "Produkt nie znajduje się w koszyku.")
             return redirect("core:product", slug=slug)
     else:
-        messages.info(request, "You dont have an order ")
+        messages.info(request, "Brak zamówień.")
         return redirect("core:product", slug=slug)
 
 
@@ -196,13 +197,13 @@ def add_item_to_cart(request, slug):
             )[0]
             order_item.quantity += 1
             order_item.save()
-            messages.info(request, "This item quantity was updated")
+            messages.info(request, "Zaktualizowano ilość produktu.")
             return redirect("core:order-summary")
         else:
-            messages.info(request, "This item is not in your cart")
+            messages.info(request, "Produkt nie znajduje się w koszyku.")
             return redirect("core:product", slug=slug)
     else:
-        messages.info(request, "You dont have an order ")
+        messages.info(request, "Brak zamówień.")
         return redirect("core:product", slug=slug)
 
 
@@ -240,12 +241,16 @@ def contact_us(request):
         if form.is_valid():
             sender_name = form.cleaned_data['name']
             sender_email = form.cleaned_data['email']
-            message = "{0} has sent you a new message:\n\n{1}".format(sender_name, form.cleaned_data['message'])
+            message = "{0} wyslal wiadomosc:\n\n{1}".format(sender_name, form.cleaned_data['message'])
             send_mail('New Enquiry', message, sender_email, ['frankysanky@gmail.com'])
-            return HttpResponse('Thank you for contacting us!')
+            return HttpResponse('Dziękujemy za kontakt! Odezwiemy się tak szybko jak to możliwe.')
     else:
         form = ContactForm()
     context = {
         "form": form
     }
     return render(request, 'contact.html', context)
+
+
+def landing_page(request):
+    return render(request, 'landing.html')

@@ -5,9 +5,12 @@
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand waves-effect" href="/">
-        <strong class="white-text">Home</strong>
-      </a>
+{#      <a class="navbar-brand waves-effect" href="/">#}
+{#        <strong class="white-text">Baking Corner</strong>#}
+{#      </a>#}
+        <a class="nav-link waves-effect white-text" href="/">Home
+              <span class="sr-only">(current)</span>
+        </a>
 
       <!-- Collapse -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -20,11 +23,6 @@
 
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
-{#          <li class="nav-item active">#}
-{#            <a class="nav-link waves-effect white-text" href="/">Home#}
-{#              <span class="sr-only">(current)</span>#}
-{#            </a>#}
-{#          </li>#}
           <li class="nav-item active">
             <a class="nav-link waves-effect white-text" href="/about">O nas
               <span class="sr-only">(current)</span>
@@ -35,10 +33,6 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
-{#          </li>#}
-{#          <li class="nav-item">#}
-{#            <a class="nav-link waves-effect" href="/checkout">Checkout</a>#}
-{#          </li>#}
         </ul>
 
         <!-- Right -->
@@ -49,23 +43,23 @@
               <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
 {#              <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>#}
               <i class="fas fa-shopping-cart"></i>
-              <span class="clearfix d-none d-sm-inline-block white-text"> Cart </span>
+              <span class="clearfix d-none d-sm-inline-block white-text"> Koszyk </span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link waves-effect" href="{% url 'account_logout' %}">
-              <span class="clearfix d-none d-sm-inline-block white-text"> Logout </span>
+              <span class="clearfix d-none d-sm-inline-block white-text"> Wyloguj </span>
             </a>
           </li>
           {% else %}
           <li class="nav-item">
             <a class="nav-link waves-effect" href="{% url 'account_login' %}">
-              <span class="clearfix d-none d-sm-inline-block white-text"> Login </span>
+              <span class="clearfix d-none d-sm-inline-block white-text"> Zaloguj </span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link waves-effect" href="{% url 'account_signup' %}">
-              <span class="clearfix d-none d-sm-inline-block white-text"> Sign up </span>
+              <span class="clearfix d-none d-sm-inline-block white-text"> Zarejestruj </span>
             </a>
           </li>
           {% endif %}

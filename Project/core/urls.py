@@ -9,7 +9,7 @@ from .views import HomeView, ItemDetailView, add_to_cart, remove_from_cart, Orde
 app_name = 'core'
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
+    path('shop/', HomeView.as_view(), name='shop'),
     path('about/', AboutView.as_view(), name='about'),
     path('contact/', views.contact_us, name='contact'),
     path('product/<slug>/', ItemDetailView.as_view(), name='product'),
@@ -20,4 +20,5 @@ urlpatterns = [
     path('remove_item_from_cart/<slug>', remove_item_from_cart, name='remove_item_from_cart'),
     path('add_item_to_cart/<slug>', add_item_to_cart, name='add_item_to_cart'),
     path('search/', CategoryView.as_view(), name='search'),
+    path('', views.landing_page, name='landing'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

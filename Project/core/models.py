@@ -1,14 +1,10 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.conf import settings
 from django.db.models import Model, Sum
 from django.urls import reverse
 from django_countries.fields import CountryField
 
-# CATEGORY_CHOICE = {
-#     ('K', 'Kruche'),
-#     ('S', 'Serniki'),
-#     ('D', 'Drożdżowe')
-# }
 LABEL_CHOICE = {
     ('P', 'primary'),
     ('S', 'secondary'),
@@ -38,10 +34,17 @@ class Item(models.Model):
     price = models.FloatField()
     disc_price = models.FloatField(blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-    label = models.CharField(choices=LABEL_CHOICE, max_length=1)
+    label = models.CharField(choices=LABEL_CHOICE, max_length=1, null=True)
     slug = models.SlugField()
     descr = models.TextField()
-    image = models.ImageField(upload_to = "static_files_proj/img/products/" )
+    image = models.ImageField(upload_to="static_files_proj/img/products/")
+    weight = models.CharField(default=100, max_length=15)
+    calories = models.PositiveIntegerField(default=0, validators=[MinValueValidator(1), MaxValueValidator(100)])
+    allergens = models.CharField(default="brak", max_length=30)
+
+    class Meta:
+        verbose_name = ("Cake")
+        verbose_name_plural = ("Cakes")
 
     def __str__(self):
         return self.title
@@ -79,6 +82,10 @@ class OrderItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
 
+    class Meta:
+        verbose_name = ("Ordered cake")
+        verbose_name_plural = ("Ordered cakes")
+
     def __str__(self):
         return f"{self.quantity} of {self.item.title}"
 
@@ -97,13 +104,16 @@ class OrderItem(models.Model):
         else:
             return self.get_total_price()
 
+    def get_order_items(self):
+        return self.quantity
+
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add=True)
     ordered = models.BooleanField(default=False)
-    ordered_date = models.DateTimeField()
+    ordered_date = models.DateTimeField(auto_now=True)
     billing_address = models.ForeignKey('BillingAddress', on_delete=models.SET_NULL,blank=True,null=True)
 
     def __str__(self):
@@ -115,13 +125,24 @@ class Order(models.Model):
             total += order.get_final_price()
         return total
 
+    def get_total_items(self):
+        total = 0
+        for order in self.items.all():
+            total += order.get_order_items()
+        return total
+
 
 class BillingAddress(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     street_address = models.CharField(max_length=200)
     apartment_address = models.CharField(max_length=200)
     country = CountryField(multiple=False)
+    city = models.CharField(max_length=120)
     zip = models.CharField(max_length=200)
 
     def __str__(self):
         return self.user.username
+
+    class Meta():
+        verbose_name = "Address"
+        verbose_name_plural = "Addresses"

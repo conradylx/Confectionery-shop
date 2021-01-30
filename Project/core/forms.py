@@ -9,20 +9,23 @@ PAYMENT_CHOICES = (
 
 
 class CheckOutForm(forms.Form):
+    COUNTRIES_FIRST = ['Poland']
     street_address = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': '1234 Street'
+        'placeholder': 'aleja Legionów'
     }))
     apartment_address = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'placeholder': '2000/22'
+        'placeholder': '22'
     }))
     city = forms.CharField(required=True, widget=forms.TextInput(attrs={
-        'class': 'form-control'
+        'class': 'form-control',
+        'placeholder': 'Warszawa'
     }))
     country = CountryField(blank_label='(select country)').formfield(widget=CountrySelectWidget(attrs={
-        'class':'custom-select d-block w-100'
+        'class': 'custom-select d-block w-100'
     }))
     zip = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control'
+        'class': 'form-control',
+        'placeholder': '00-000'
     }))
     same_billing_address = forms.BooleanField(required=False)
     save_info = forms.BooleanField(required=False)

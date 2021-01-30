@@ -1,0 +1,162 @@
+[33mcommit c516295e5e747de78d3f8b7890356058b5e63741[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sat Dec 5 16:34:01 2020 +0100
+
+    Revert "Revert "Deleted backup files""
+    
+    This reverts commit a2a266ef09564c8fb706e5aac390a94479bf920e.
+
+[33mcommit ff499a3e1d93388245ece6e50b3683bea37063a9[m
+Merge: a2a266e 55c988b
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sat Dec 5 16:33:44 2020 +0100
+
+    Merge branch 'master' of https://github.com/conradylx/ProjectWebsite
+
+[33mcommit a2a266ef09564c8fb706e5aac390a94479bf920e[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sat Dec 5 16:33:29 2020 +0100
+
+    Revert "Deleted backup files"
+    
+    This reverts commit 692a8580f2a60b883e3993d2c74e80a059a0152d.
+
+[33mcommit 55c988b726a5a341c129d43628f495eb2a3eedae[m
+Merge: 919e7c8 4f7cd49
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sat Dec 5 14:02:46 2020 +0100
+
+    Merge remote-tracking branch 'origin/master' into master
+
+[33mcommit 919e7c8156adf45f1ed362bd7b969b73b4cd9299[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sat Dec 5 14:02:26 2020 +0100
+
+    Improved product display and added minor improvements.
+
+[33mcommit 4f7cd496060ce150a8df1d45627edd810fec00e7[m
+Author: Konrad B <50596942+conradylx@users.noreply.github.com>
+Date:   Sun Nov 29 19:46:29 2020 +0100
+
+    Add or update the App Service deployment workflow configuration from Azure Portal.
+
+[33mcommit 692a8580f2a60b883e3993d2c74e80a059a0152d[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sun Nov 29 19:00:55 2020 +0100
+
+    Deleted backup files
+
+[33mcommit 5897e71600707d71ef11bcaf85c878225c2a69dc[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sun Nov 29 18:55:01 2020 +0100
+
+    Updated jquery source link. Just a little modyfications added.
+
+[33mcommit c969011fe8b7467697a585c7cd3d53729d3f110f[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sun Nov 29 17:25:31 2020 +0100
+
+    Improved paginator version 2.0
+
+[33mcommit 5abf9b65189177e0245ce827a5cffe0e9c31b064[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sun Nov 29 14:04:32 2020 +0100
+
+    Improved paginator.
+
+[33mcommit a4f586945e7d2175b031fb531f90f78c0d172422[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Thu Nov 26 15:12:50 2020 +0100
+
+    Contact. Added functionality of sending mails.
+
+[33mcommit 7d98da01a192782136eba2aecb778cd85b1af1c6[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Thu Nov 26 14:00:20 2020 +0100
+
+    Added contact and about page. Added files
+
+[33mcommit 9e4794b9a9930d237706f4b5eaea51e276418e47[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Thu Nov 26 13:52:25 2020 +0100
+
+    Added contact and about page.
+
+[33mcommit 0dc944a9c332c91589c6892a16771fcaab7607bd[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Tue Nov 24 12:43:17 2020 +0100
+
+    Working version.
+
+[33mcommit 47cf2d69fd1310967402cb25cd55ff16d61ba498[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Wed Nov 18 18:02:07 2020 +0100
+
+    Added categories in search
+
+[33mcommit bf3a261563236d556f679ad0191bc503bf88b891[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Wed Nov 18 17:51:29 2020 +0100
+
+    Backup
+
+[33mcommit d168994006ee88757c233fabd004c48b5a6eb52f[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Mon Nov 16 16:09:50 2020 +0100
+
+    Added filtering of categories and improved categories display
+
+[33mcommit 2aef72b234d538b4d44637fb458f99f4f70b916a[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sun Nov 8 20:09:28 2020 +0100
+
+    Finished order-summary.html
+
+[33mcommit 1a28f2bcf74c8fd799dd32e130f97d6589bb432e[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Fri Nov 6 19:24:45 2020 +0100
+
+    Finished cart
+
+[33mcommit fca76b683910630687581549c275ee09138c8084[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Wed Nov 4 19:40:07 2020 +0100
+
+    Creates summary cart
+
+[33mcommit c680505d29dc9f815d542907a0aa502bb72fc188[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Tue Nov 3 18:30:31 2020 +0100
+
+    Added comment tags and improved cart add and delete
+
+[33mcommit cff1a878b329702e06a1052100bf1ee3eaf2a095[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sat Oct 31 14:35:46 2020 +0100
+
+    Display db models in home page
+
+[33mcommit 8039f496493acac1d274650402a004ffab4ca534[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sat Oct 31 13:27:53 2020 +0100
+
+    Changed html structure
+
+[33mcommit a42826616ade8eac21f15e15f7e3b3d907a40058[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sat Oct 31 13:07:46 2020 +0100
+
+    Added bootstrap layout.
+
+[33mcommit 46f790d335032f668260cb1a35ecf2f6a9ef5eef[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sat Oct 31 13:07:22 2020 +0100
+
+    Added bootstrap layout
+
+[33mcommit 8a8cb228e4ae5c4fe9102b6debfa624fd23d7142[m
+Author: conradylx <50596942+conradylx@users.noreply.github.com>
+Date:   Sat Oct 31 13:03:33 2020 +0100
+
+    Start Project.
+    Added: AllAuth and Django plus simple models, views and mapping.

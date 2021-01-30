@@ -10,10 +10,20 @@
 <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
 <!-- Initializations -->
 <script type="text/javascript">
-  // Animations initialization
-  new WOW().init();
+    // Animations initialization
+    new WOW().init();
 </script>
 <script>
-  $(function(){
-  $('.carousel-example-1z').carousel();});
+    $(function () {
+        $('.carousel-example-1z').carousel();
+    });
+</script>
+<script>
+    addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
 </script>
