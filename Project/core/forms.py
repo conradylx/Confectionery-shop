@@ -21,7 +21,7 @@ class CheckOutForm(forms.Form):
         'placeholder': 'Warszawa'
     }))
     country = CountryField(blank_label='(select country)').formfield(widget=CountrySelectWidget(attrs={
-        'class': 'custom-select d-block w-100'
+        'class': 'custom-select d-block w-100',
     }))
     zip = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',

@@ -6,8 +6,8 @@
         <div class="container" style="margin-top: 60px;">
 
             <!--Navbar-->
-{#        Lub red darken-4#}
-            <nav class="navbar navbar-expand-lg navbar-dark mdb-color red lighten-2 mt-3 mb-5" >
+            {#        Lub red darken-4#}
+            <nav class="navbar navbar-expand-lg navbar-dark mdb-color red lighten-2 mt-3 mb-5">
 
                 <!-- Navbar brand -->
                 <span class="navbar-brand">Categories:</span>
@@ -76,14 +76,16 @@
                                         <h5>
                                             <strong>
                                                 <a href="{{ item.get_absolute_url }}"
-                                                class="dark-grey-text"> {{ item.title }}</a>
+                                                   class="dark-grey-text"> {{ item.title }}</a>
                                                 <div>
                                                     {% if item.label == 'P' %}
-                                                        <span class="badge badge-pill primary-color">New</span>
+                                                        <span class="badge badge-pill primary-color">Nowość</span>
                                                     {% elif item.label == 'S' %}
-                                                        <span class="badge badge-pill secondary-color">Sale-out</span>
+                                                        <span class="badge badge-pill secondary-color">Wyprzedaż</span>
                                                     {% elif item.label == 'D' %}
-                                                        <span class="badge badge-pill danger-color">Promotion</span>
+                                                        <span class="badge badge-pill danger-color">Promocja</span>
+                                                    {% elif item.label == '' %}
+                                                        <span class="badge badge-pill danger-color"></span>
                                                     {% endif %}
                                                 </div>
                                             </strong>
@@ -102,7 +104,7 @@
                                 </div>
                                 <!--Card-->
                             </div>
-                            {% empty %}
+                        {% empty %}
                             None to display
                         {% endfor %}
                     {% else %}
@@ -132,15 +134,15 @@
                                                 <a href="{{ item.get_absolute_url }}"
                                                    class="dark-grey-text">{{ item.title }}
                                                 </a>
-                                            <div>
-                                                 {% if item.label == 'P' %}
-                                                        <span class="badge badge-pill primary-color">New</span>
+                                                <div>
+                                                    {% if item.label == 'P' %}
+                                                        <span class="badge badge-pill primary-color">Nowość</span>
                                                     {% elif item.label == 'S' %}
-                                                        <span class="badge badge-pill secondary-color">Sale-out</span>
+                                                        <span class="badge badge-pill secondary-color">Wyprzedaż</span>
                                                     {% elif item.label == 'D' %}
-                                                        <span class="badge badge-pill danger-color">Promotion</span>
+                                                        <span class="badge badge-pill danger-color">Promocja</span>
                                                     {% endif %}
-                                            </div>
+                                                </div>
                                             </strong>
                                         </h5>
 

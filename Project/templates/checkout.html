@@ -6,7 +6,7 @@
         <div class="container wow fadeIn">
 
             <!-- Heading -->
-            <h2 class="my-5 h2 text-center">Checkout form</h2>
+            <h2 class="my-5 h2 text-center">Formularz zapłaty</h2>
 
             <!--Grid row-->
             <div class="row">
@@ -28,7 +28,6 @@
                             <!--address-->
                             <div class="md-form mb-5">
                                 Adres<br/>
-                                {#                <input type="text" id="address" class="form-control" placeholder="1234 Main St">#}
                                 {{ form.street_address }}
                                 <label for="address" class=""></label>
                             </div>
@@ -36,7 +35,6 @@
                             <!--address-2-->
                             <div class="md-form mb-5">
                                 Numer mieszkania / domu<br/>
-                                {#                <input type="text" id="address-2" class="form-control" placeholder="Apartment or suite">#}
                                 {{ form.apartment_address }}
                                 <label for="address-2" class=""></label>
                             </div>
@@ -48,10 +46,6 @@
                                 <div class="col-lg-4 col-md-12 mb-4">
 
                                     <label for="country">Kraj</label>
-                                    {#                  <select class="custom-select d-block w-100" id="country" required>#}
-                                    {#                    <option value="">Choose...</option>#}
-                                    {#                    <option>United States</option>#}
-                                    {#                  </select>#}
                                     {{ form.country }}
                                     <div class="invalid-feedback">
                                         Proszę wybrać prawidłowy kraj.
@@ -69,7 +63,6 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 mb-4">
                                     <label for="zip">Kod pocztowy</label>
-                                    {#                  <input type="text" class="form-control" id="zip" placeholder="" required>#}
                                     {{ form.zip }}
                                     <div class="invalid-feedback">
                                         Kod pocztowy jest wymagany.
@@ -86,34 +79,17 @@
                                 <input {% if form.same_billing_address %} checked {% endif %} type="checkbox"
                                                                           class="custom-control-input"
                                                                           name="same_billing_address" id="same-address">
-                                {#                  {{ form.same_billing_address }}#}
-                                <label class="custom-control-label" for="same-address">Shipping address is the same as
-                                    my billing address</label>
+                                <label class="custom-control-label" for="same-address">Adres dostawy jest taki sam jak adres zamówienia</label>
                             </div>
                             <div class="custom-control custom-checkbox">
                                 <input {% if form.save_info %} checked {% endif %} type="checkbox"
                                                                class="custom-control-input" name="save_info"
                                                                id="save-info">
-                                {#                  {{ form.save_info }}#}
-                                <label class="custom-control-label" for="save-info">Save this information for next
-                                    time</label>
+                                <label class="custom-control-label" for="save-info">Zapisz dane dla następnego zamówienia</label>
                             </div>
 
                             <hr>
 
-                            <div class="d-block my-3">
-                                {#                  {% for value, text in form.fields.payment_option.choices %}#}
-                                <div class="custom-control custom-radio" required>
-                                    {#                  <input id="{{ name }}" name="{{ name }}" type="radio" class="custom-control-input" checked required>#}
-                                    {#                  <label class="custom-control-label" for="{{ name }}">{{ name }}</label>#}
-                                    {{ form.payment_option }}
-                                    {#                  {%  endfor %}#}
-                                </div>
-                                {#                <div class="custom-control custom-radio">#}
-                                {#                  <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>#}
-                                {#                  <label class="custom-control-label" for="paypal">Paypal</label>#}
-                                {#                </div>#}
-                            </div>
                             <hr class="mb-4">
                             <button class="btn btn-primary btn-lg btn-block" type="submit">Przejdź do zapłaty</button>
 
@@ -121,10 +97,8 @@
 
                     </div>
                     <!--/.Card-->
-
                 </div>
                 <!--Grid column-->
-
                 <!--Grid column-->
                 <div class="col-md-4 mb-4">
 
@@ -154,24 +128,11 @@
                         </li>
                         {% endfor %}
                         <li class="list-group-item d-flex justify-content-between">
-                            <span>Total (PLN)</span>
+                            <span>Suma (PLN)</span>
                             <strong>{{ ordered_items.get_total|floatformat:2 }}zł</strong>
                         </li>
                     </ul>
                     <!-- Cart -->
-
-{#                    <!-- Promo code -->#}
-{#                    <form class="card p-2">#}
-{#                        <div class="input-group">#}
-{#                            <input type="text" class="form-control" placeholder="Promo code"#}
-{#                                   aria-label="Recipient's username" aria-describedby="basic-addon2">#}
-{#                            <div class="input-group-append">#}
-{#                                <button class="btn btn-secondary btn-md waves-effect m-0" type="button">Redeem</button>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </form>#}
-{#                    <!-- Promo code -->#}
-
                 </div>
                 <!--Grid column-->
 
