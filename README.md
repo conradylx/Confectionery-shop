@@ -37,4 +37,4 @@ Screenshots:
 ![Alt text](https://github.com/conradylx/ProjectWebsite/blob/master/Screenshots/cartpage.png?raw=true "Optional Title")
 ![Alt text](https://github.com/conradylx/ProjectWebsite/blob/master/Screenshots/homepage.png?raw=true "Optional Title")
 ![Alt text](https://github.com/conradylx/ProjectWebsite/blob/master/Screenshots/shoppage.png?raw=true "Optional Title")
-![Alt text](https://github.com/conradylx/ProjectWebsite/blob/master/Screenshots/sumamrypage.pngg?raw=true "Optional Title")
+![Alt text](https://github.com/conradylx/ProjectWebsite/blob/master/Screenshots/sumamrypage.png?raw=true "Optional Title")
