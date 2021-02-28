@@ -19,7 +19,8 @@ class Category(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Categorie"
+        verbose_name = "Kategorie"
+        verbose_name_plural = "Kategorie"
 
     def get_absolute_url(self):
         return reverse('home')
@@ -43,8 +44,8 @@ class Item(models.Model):
     allergens = models.CharField(default="brak", max_length=30)
 
     class Meta:
-        verbose_name = ("Cake")
-        verbose_name_plural = ("Cakes")
+        verbose_name = ("Ciasto")
+        verbose_name_plural = ("Ciasta")
 
     def __str__(self):
         return self.title
@@ -83,8 +84,8 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=1)
 
     class Meta:
-        verbose_name = ("Ordered cake")
-        verbose_name_plural = ("Ordered cakes")
+        verbose_name = ("Zamówione ciasta")
+        verbose_name_plural = ("Zamówione ciasta")
 
     def __str__(self):
         return f"{self.quantity} of {self.item.title}"
@@ -116,6 +117,10 @@ class Order(models.Model):
     ordered_date = models.DateTimeField(auto_now=True)
     billing_address = models.ForeignKey('BillingAddress', on_delete=models.SET_NULL,blank=True,null=True)
 
+    class Meta:
+        verbose_name = "Zamówienia"
+        verbose_name_plural = "Zamówienia"
+
     def __str__(self):
         return self.user.username
 
@@ -144,5 +149,5 @@ class BillingAddress(models.Model):
         return self.user.username
 
     class Meta():
-        verbose_name = "Address"
-        verbose_name_plural = "Addresses"
+        verbose_name = "Dane kontaktowe"
+        verbose_name_plural = "Dane kontaktowe"

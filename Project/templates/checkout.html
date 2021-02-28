@@ -75,23 +75,60 @@
 
                             <hr>
 
+                            <label style="margin-left:290px">Sposób zapłaty</label>
+{#                            {% for val, name in form.fields.payment_option.choices %}#}
+{#                                <div class="custom-control custom-radio">#}
+{#                                    <input id="{{ name }}" name="payment_option" value="{{ val }}" type="radio"#}
+{#                                           class="custom-control-input" required>#}
+{#                                    <label class="custom-control-label" for="{{ name }}">{{ name }}</label>#}
+{#                                </div>#}
+{#                            {% endfor %}#}
+                            <br/>
+                            <div class="w3-paypal-button-container">
+                                <div id="paypal-button-container"></div>
+                                <script src="https://www.paypal.com/sdk/js?client-id=AcBwyVufMyJWFVzNIDiDTEOB4jtMtAjGaS0OsdnvAQC4pEI3eWaMoRtt6DJBn3RF9iiYjvZQ72Pj_8Th&currency=PLN"></script>
+                                <script>
+                                    paypal.Buttons({
+                                        createOrder: function (data, actions) {
+                                            return actions.order.create({
+                                                purchase_units: [{
+                                                    amount: {
+                                                        value: "{{ ordered_items.get_total|floatformat:2 }}"
+                                                    }
+                                                }]
+                                            });
+                                        },
+                                        onApprove: function (data, actions) {
+                                            return actions.order.capture().then(function (details) {
+                                                alert('Transaction completed!');
+                                                window.location.replace("/shop");
+                                            });
+                                        }
+
+                                    }).render('#paypal-button-container');
+                                </script>
+                            </div>
+                            <br/>
+
                             <div class="custom-control custom-checkbox">
                                 <input {% if form.same_billing_address %} checked {% endif %} type="checkbox"
                                                                           class="custom-control-input"
                                                                           name="same_billing_address" id="same-address">
-                                <label class="custom-control-label" for="same-address">Adres dostawy jest taki sam jak adres zamówienia</label>
+                                <label class="custom-control-label" for="same-address">Adres dostawy jest taki sam jak
+                                    adres zamówienia</label>
                             </div>
                             <div class="custom-control custom-checkbox">
                                 <input {% if form.save_info %} checked {% endif %} type="checkbox"
                                                                class="custom-control-input" name="save_info"
                                                                id="save-info">
-                                <label class="custom-control-label" for="save-info">Zapisz dane dla następnego zamówienia</label>
+                                <label class="custom-control-label" for="save-info">Zapisz dane dla następnego
+                                    zamówienia</label>
                             </div>
 
                             <hr>
 
                             <hr class="mb-4">
-                            <button class="btn btn-primary btn-lg btn-block" type="submit">Przejdź do zapłaty</button>
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">Wyślij zamówienie</button>
 
                         </form>
 
@@ -115,17 +152,17 @@
                     <!-- Cart -->
                     <ul class="list-group mb-3 z-depth-1">
                         {% for order_item in ordered_items.items.all %}
-                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                            <div>
-                                <h6 class="my-0">{{ order_item.item.title }}</h6>
-                                {% if order_item.quantity == 1 %}
-                                    <small class="text-muted">{{ order_item.quantity }} ciasto</small>
-                                {% else %}
-                                  <small class="text-muted">{{ order_item.quantity }} ciasta</small>
-                                {% endif %}
-                            </div>
-                            <span class="text-muted">{{ order_item.get_final_price|floatformat:2 }}zł</span>
-                        </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">{{ order_item.item.title }}</h6>
+                                    {% if order_item.quantity == 1 %}
+                                        <small class="text-muted">{{ order_item.quantity }} ciasto</small>
+                                    {% else %}
+                                        <small class="text-muted">{{ order_item.quantity }} ciasta</small>
+                                    {% endif %}
+                                </div>
+                                <span class="text-muted">{{ order_item.get_final_price|floatformat:2 }}zł</span>
+                            </li>
                         {% endfor %}
                         <li class="list-group-item d-flex justify-content-between">
                             <span>Suma (PLN)</span>

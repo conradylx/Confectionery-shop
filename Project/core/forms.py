@@ -2,10 +2,12 @@ from django import forms
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 
-PAYMENT_CHOICES = (
-    ('S', 'Stripe'),
-    ('P', 'Paypal')
-)
+# PAYMENT_CHOICES = (
+#     ('B', 'Blik'),
+#     ('P', 'Paypal'),
+#     ('D', 'Karta kredytowa'),
+#     ('R', 'Przelewy')
+# )
 
 
 class CheckOutForm(forms.Form):
@@ -27,10 +29,9 @@ class CheckOutForm(forms.Form):
         'class': 'form-control',
         'placeholder': '00-000'
     }))
+    # payment_option = forms.ChoiceField(widget=forms.RadioSelect, choices=PAYMENT_CHOICES)
     same_billing_address = forms.BooleanField(required=False)
     save_info = forms.BooleanField(required=False)
-    payment_option = forms.ChoiceField(
-        widget=forms.RadioSelect, choices=PAYMENT_CHOICES)
 
 
 class ContactForm(forms.Form):

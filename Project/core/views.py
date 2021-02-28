@@ -44,14 +44,15 @@ class CheckoutView(View):
                 )
                 billing_address.save()
                 order.billing_address = billing_address
+                order.ordered = True
                 order.save()
-                return redirect('core:checkout')
+                messages.info(self.request, "Dziękujemy za zakupy w naszym sklepie!")
+                return redirect('core:shop')
             messages.warning(self.request, "Failed check out")
             return redirect('core:checkout')
         except ObjectDoesNotExist:
-            # messages.error(request="You dont have active orders")
-            messages.error(request="Koszyk jest pusty.")
-            return redirect("core:order_summary")
+            messages.error(request="Dziękujemy za zakupy w naszym sklepie!")
+            return redirect("core:shop")
 
 
 class HomeView(ListView):
@@ -159,6 +160,19 @@ def remove_from_cart(request, slug):
         messages.info(request, "Brak aktywnego zamówienia")
         return redirect("core:product", slug=slug)
 
+@login_required
+def remove_from_order(request):
+    item = get_object_or_404(Item)
+    order_qs = Order.objects.filter(user=request.user, ordered=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        if order.items.filter(Q(item__slug=item.slug)).exists():
+            order_item = OrderItem.objects.filter(
+                item=item, user=request.user, ordered=False
+            )[0]
+            order.items.remove(order_item)
+            order_item.delete()
+            return redirect("core:order-summary")
 
 @login_required
 def remove_item_from_cart(request, slug):
