@@ -14,7 +14,7 @@ You must have the following installed:
 
 It is possible to run the app with no database content, but there will be no products to show.
 
-To run with a database, you will need to add some products manualy or type in the terminal:
+To run with a database, you will need to add some products manually or type in the terminal:
 
 - py manage.py makemigrations
 - py manage.py migrate
