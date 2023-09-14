@@ -2,6 +2,8 @@
 
 This is a simple application that demonstrates an E-commerce website using the Django stack. The application loads products from SQLite database and displays them. Users can select to display products in a single category. Users can click on any product to get more information including pricing, calories and description. Users can select items and add them or delete them from their shopping cart. PayPal paying is included.
 
+The application was also written using HTML, CSS and Javascript.
+
 ## Prerequisites
 
 You must have the following installed:
